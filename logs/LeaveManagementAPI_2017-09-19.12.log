@@ -1,0 +1,62 @@
+2017-09-19 23:40:22,478 DEBUG org.hibernate.SQL - 
+    /* load com.easybusiness.leavepersistence.entity.Designation */ select
+        designatio0_.id as id1_1_0_,
+        designatio0_.desig as desig2_1_0_ 
+    from
+        designation designatio0_ 
+    where
+        designatio0_.id=?
+2017-09-19 23:40:22,480 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [1] as [BIGINT] - [5]
+2017-09-19 23:40:22,488 DEBUG o.s.orm.jpa.JpaTransactionManager - Initiating transaction commit
+2017-09-19 23:40:22,488 DEBUG o.s.orm.jpa.JpaTransactionManager - Committing JPA transaction on EntityManager [org.hibernate.jpa.internal.EntityManagerImpl@5673c8ea]
+2017-09-19 23:40:22,490 DEBUG org.hibernate.SQL - 
+    /* update
+        com.easybusiness.leavepersistence.entity.LeaveTransaction */ update
+            leave_transaction_details 
+        set
+            applied_by=?,
+            applied_on=?,
+            approved_by=?,
+            approved_on=?,
+            availed_on=?,
+            canceled_on=?,
+            created_by=?,
+            created_on=?,
+            leave_end_date=?,
+            leave_type_id=?,
+            leave_no=?,
+            leave_start_date=?,
+            mod_by=?,
+            mod_on=?,
+            raised_for=?,
+            raised_on=?,
+            status=?,
+            user_id=? 
+        where
+            leave_tran_id=?
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [1] as [BIGINT] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [2] as [DATE] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [3] as [BIGINT] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [4] as [DATE] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [5] as [DATE] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [6] as [DATE] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [7] as [BIGINT] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [8] as [DATE] - [null]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [9] as [DATE] - [2017-10-03]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [10] as [BIGINT] - [3]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [11] as [BIGINT] - [1]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [12] as [DATE] - [2017-10-02]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [13] as [BIGINT] - [7010]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [14] as [DATE] - [2017-09-02]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [15] as [DATE] - [2017-10-01]
+2017-09-19 23:40:22,490 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [16] as [DATE] - [2017-09-02]
+2017-09-19 23:40:22,506 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [17] as [VARCHAR] - [Approved]
+2017-09-19 23:40:22,506 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [18] as [BIGINT] - [7010]
+2017-09-19 23:40:22,506 TRACE o.h.type.descriptor.sql.BasicBinder - binding parameter [19] as [BIGINT] - [1]
+2017-09-19 23:40:22,506 DEBUG o.s.orm.jpa.JpaTransactionManager - Not closing pre-bound JPA EntityManager after transaction
+2017-09-19 23:40:22,521 DEBUG o.s.w.s.m.m.a.HttpEntityMethodProcessor - Written [LeaveTransaction [id=1, user=UserDTO [id=7010, userName=secured, firstName=Secured, fromDate=null, lastName=User, password=123, gender=male, dateOfBirth=1989-10-23, email=secured@sls.com, alternateEmail=secured@sls.com, mobile=8723126745, endDate=null, organization=Organization [id=1, orgName=SLS, orgLocation=Kolkata], department=Department [id=1, organization=Organization [id=1, orgName=SLS, orgLocation=Kolkata], deptName=IT], designation=Designation [id=5, desig=LEAD], typeOfEmployment=null, isEnabled=1, userImg=null, modifiedBy=null, modifiedOn=null, permAddr=KaliGhat, state=West Bengal, city=Kolkata, country=India, zip=700102, fatherName=A K Singh, spouseName=S Singh, passport=null, location=null, unitId=null], leaveMaster=LeaveMaster [id=3, leaveType=Comp Off, isCarryForward=Y, maxNumInAYear=null, carryForwardLimit=null, validity=null, status=null, createdBy=null, createdOn=null, modifiedBy=null, modifiedOn=null], appliedOn=null, appliedBy=null, approvedOn=null, approvedBy=null, leaveStartDate=2017-10-02, canceledOn=null, availedOn=null, raisedOn=2017-09-02, raisedFor=2017-10-01, leaveEndDate=2017-10-03, status=Approved, createdBy=null, createdOn=null, modifiedBy=7010, modifiedOn=2017-09-02, leaveNo=1]] as "application/json" using [org.springframework.http.converter.json.MappingJackson2HttpMessageConverter@8bc0696]
+2017-09-19 23:40:22,521 DEBUG o.s.web.servlet.DispatcherServlet - Null ModelAndView returned to DispatcherServlet with name 'dispatcherServlet': assuming HandlerAdapter completed request handling
+2017-09-19 23:40:22,521 DEBUG o.s.o.j.s.OpenEntityManagerInViewInterceptor - Closing JPA EntityManager in OpenEntityManagerInViewInterceptor
+2017-09-19 23:40:22,521 DEBUG o.s.o.jpa.EntityManagerFactoryUtils - Closing JPA EntityManager
+2017-09-19 23:40:22,521 DEBUG o.s.web.servlet.DispatcherServlet - Successfully completed request
+2017-09-19 23:40:22,521 DEBUG o.s.b.w.f.OrderedRequestContextFilter - Cleared thread-bound request context: org.apache.catalina.connector.RequestFacade@1891f0f9
