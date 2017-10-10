@@ -82,7 +82,7 @@ public class LeaveTransactionServiceImpl implements LeaveTransactionService {
 	leaveTransactionDTO.setModifiedOn(leaveTransaction.getModifiedOn());
 	leaveTransactionDTO.setRaisedFor(leaveTransaction.getRaisedFor());
 	leaveTransactionDTO.setRaisedOn(leaveTransaction.getRaisedOn());
-	System.out.println("status inside leave transaction is "+leaveTransaction.getStatus().toString());
+	System.out.println("status inside leave transaction is " + leaveTransaction.getStatus().toString());
 	leaveTransactionDTO.setStatus(
 		null != leaveTransaction.getStatus() ? prepareStatusDTO(leaveTransaction.getStatus()) : null);
 	leaveTransactionDTO
@@ -487,6 +487,33 @@ public class LeaveTransactionServiceImpl implements LeaveTransactionService {
 	try {
 	    leaveTransactionEntityList = leaveTransactionDao.findLeaveTransactionByStatus(leaveStatus);
 	} catch (Exception e) {
+	    e.printStackTrace();
+	}
+	List<LeaveTransactionDTO> leaveTransactionDTOList = leaveTransactionEntityList.stream()
+		.map(leaveTransactionEntityItem -> null != leaveTransactionEntityItem
+			? prepareLeaveTransactionDTO(leaveTransactionEntityItem) : new LeaveTransactionDTO())
+		.collect(Collectors.toList());
+	return new ResponseEntity<List<LeaveTransactionDTO>>(leaveTransactionDTOList, HttpStatus.OK);
+    }
+
+    @CrossOrigin(origins = USER_HOST_SERVER)
+    @RequestMapping(value = "getLeaveTransactionForUserIdAndDateRange/{userId}/{leaveStartDate}/{leaveEndDate}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<List<LeaveTransactionDTO>> findLeaveTransactionByUserIdAndDateRange(
+	    @PathVariable("userId") String userId, @PathVariable("leaveStartDate") String leaveStartDate,
+	    @PathVariable("leaveEndDate") String leaveEndDate) {
+
+	List<LeaveTransaction> leaveTransactionEntityList = new ArrayList<LeaveTransaction>();
+	try {
+	    leaveTransactionEntityList = leaveTransactionDao.findLeaveTransactionByUserIAndLeaveDate(
+		    Long.parseLong(userId),
+		    new java.sql.Date((new SimpleDateFormat("dd-MM-yyyy").parse(leaveStartDate)).getTime()),
+		    new java.sql.Date((new SimpleDateFormat("dd-MM-yyyy").parse(leaveEndDate)).getTime()));
+	} catch (NumberFormatException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (ParseException e) {
+	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
 	List<LeaveTransactionDTO> leaveTransactionDTOList = leaveTransactionEntityList.stream()

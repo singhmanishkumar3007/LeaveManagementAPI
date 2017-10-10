@@ -22,19 +22,21 @@ public interface LeaveTransactionService {
 
     public ResponseEntity<List<LeaveTransactionDTO>> findLeaveTransactionByUserIdAndLeaveTypeIdAndLeaveDate(
 	    String userId, String leaveTypeId, String leaveStartDate, String leaveEndDate);
-    
-    public int countOfLeaveTransactions(
-	    String userId, String leaveTypeId, String leaveStartDate, String leaveEndDate);
+
+    public int countOfLeaveTransactions(String userId, String leaveTypeId, String leaveStartDate, String leaveEndDate);
 
     public ResponseEntity<List<LeaveTransactionDTO>> findAll();
-    
+
     public ResponseEntity<List<LeaveTransactionDTO>> findByLeaveStatus(String leaveStatus);
 
     public ResponseEntity<LeaveTransactionDTO> addOrModifyLeaveTransaction(LeaveTransactionDTO leaveTransactionDTO);
 
     public void deleteLeaveTransaction(String leaveTransactionId);
 
-    public ResponseEntity<List<LeaveTransactionDTO>> findLeaveTransactionByUserIdAndLeaveTypeIdAndDateRange(String userId,
-	    String leaveTypeId, String leaveStartDate, String leaveEndDate);
+    public ResponseEntity<List<LeaveTransactionDTO>> findLeaveTransactionByUserIdAndLeaveTypeIdAndDateRange(
+	    String userId, String leaveTypeId, String leaveStartDate, String leaveEndDate);
+
+    public ResponseEntity<List<LeaveTransactionDTO>> findLeaveTransactionByUserIdAndDateRange(String userId,
+	    String leaveStartDate, String leaveEndDate);
 
 }

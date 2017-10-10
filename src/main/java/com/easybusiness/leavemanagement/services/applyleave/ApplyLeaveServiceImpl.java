@@ -2,6 +2,7 @@ package com.easybusiness.leavemanagement.services.applyleave;
 
 import static com.easybusiness.leavemanagement.constant.LeaveManagementConstant.USER_HOST_SERVER;
 
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 
 import org.slf4j.Logger;
@@ -46,12 +47,26 @@ public class ApplyLeaveServiceImpl implements ApplyLeaveService {
 		    unitId, dayType);
 	    responseMsg = "Leave Successfully Applied";
 	    httpStatus = HttpStatus.OK;
-	} catch (Exception e) {
+	} 
+	
+	catch (SQLException e) {
+	    
 	    LOGGER.error("exception while applying leave for user by Id {} , leave apply details {},  {}", userId,
 		    userId + "~" + leaveTypeId + "~" + leaveStartDate + "~" + leaveEnddate + "~" + locationId + "~"
 			    + unitId + "~" + dayType,
 		    e.getMessage());
-	    responseMsg = "Leave could not be Applied";
+	    
+		responseMsg="Leave Balance is not sufficient  or Issue In Applying Leave";
+	    httpStatus = HttpStatus.EXPECTATION_FAILED;
+	}
+	
+	catch (Exception e) {
+	    LOGGER.error("exception while applying leave for user by Id {} , leave apply details {},  {}", userId,
+		    userId + "~" + leaveTypeId + "~" + leaveStartDate + "~" + leaveEnddate + "~" + locationId + "~"
+			    + unitId + "~" + dayType,
+		    e.getMessage());
+	    
+	    responseMsg = e.getMessage();
 	    httpStatus = HttpStatus.EXPECTATION_FAILED;
 	}
 	LeaveActivityResponse leaveActivityResponse=new LeaveActivityResponse();
